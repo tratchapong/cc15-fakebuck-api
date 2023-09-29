@@ -15,9 +15,13 @@ exports.register = async (req, res, next) => {
       data: value
     });
     const payload = { userId: user.id };
-    const accessToken = jwt.sign(payload, process.env.JWT_SECRET_KEY || '1q2w3e4r5t6y7u8i9o0p', {
-      expiresIn: process.env.JWT_EXPIRE
-    });
+    const accessToken = jwt.sign(
+      payload,
+      process.env.JWT_SECRET_KEY || '1q2w3e4r5t6y7u8i9o0p',
+      {
+        expiresIn: process.env.JWT_EXPIRE
+      }
+    );
     res.status(201).json({ accessToken });
   } catch (err) {
     next(err);
@@ -47,10 +51,15 @@ exports.login = async (req, res, next) => {
     }
 
     const payload = { userId: user.id };
-    const accessToken = jwt.sign(payload, process.env.JWT_SECRET_KEY || '1q2w3e4r5t6y7u8i9o0p', {
-      expiresIn: process.env.JWT_EXPIRE
-    });
-    res.status(200).json({ accessToken });
+    const accessToken = jwt.sign(
+      payload,
+      process.env.JWT_SECRET_KEY || '1q2w3e4r5t6y7u8i9o0p',
+      {
+        expiresIn: process.env.JWT_EXPIRE
+      }
+    );
+    delete user.password;
+    res.status(200).json({ accessToken, user });
   } catch (err) {
     next(err);
   }
