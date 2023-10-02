@@ -22,7 +22,8 @@ exports.register = async (req, res, next) => {
         expiresIn: process.env.JWT_EXPIRE
       }
     );
-    res.status(201).json({ accessToken });
+    delete user.password;
+    res.status(201).json({ accessToken, user });
   } catch (err) {
     next(err);
   }
