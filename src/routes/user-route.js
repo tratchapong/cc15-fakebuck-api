@@ -15,5 +15,6 @@ router.patch(
   ]),
   userController.updateProfile
 );
+router.get('/:userId', authenticateMiddleware, userController.getUserById);
 
 module.exports = router;

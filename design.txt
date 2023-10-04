@@ -18,7 +18,7 @@ GET AUTHENTICATED USER
 GET /auth/me
 HEADER AUTHORIZATION Bearer ACCESS_TOKEN
 RESPONSE
-200 { user: { id: Number, firstName: String } }
+200 { user: { id: Number, firstName: String, ... } }
 401 { message: String }
 500 { message: String }
 
@@ -27,7 +27,15 @@ PATCH /user
 HEADER AUTHORIZATION Bearer ACCESS_TOKEN
 BODY profileImage?, coverImage?
 RESPONSE
-200 { message: String }
+200 { profileImage?: String, coverImage?: String }
 400 { message: String }
+401 { message: String }
+500 { message: String }
+
+GET USER PROFILE BY id
+GET /user/:userId
+HEADER AUTHORIZATION Bearer ACCESS_TOKEN
+RESPONSE
+200 { user: { id: Number, firstName: String, ... } }
 401 { message: String }
 500 { message: String }
