@@ -10,5 +10,10 @@ router.post(
   authenticateMiddleware,
   friendController.requestFriend
 );
+router.patch(
+  '/:requesterId',
+  authenticateMiddleware,
+  friendController.acceptRequest
+);
 
 module.exports = router;
