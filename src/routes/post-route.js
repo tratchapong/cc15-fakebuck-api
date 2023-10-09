@@ -19,5 +19,6 @@ router.get(
   postController.getAllPostIncludeFriendPost
 );
 router.post('/:postId/like', authenticateMiddleware, likeController.toggleLike);
+router.delete('/:postId', authenticateMiddleware, postController.deletePost);
 
 module.exports = router;
